@@ -18,12 +18,12 @@
 				</ul>
 			<h3>SongTab</h3>
 				<ul>
-					<li>songTabId(primary key)</li>
-					<li>songTabLocation(foreign key)</li>
+					<li>songTabSongId(foreign key)</li>
+					<li>songTabTabId(foreign key)</li>
 				</ul>
 			<h3>Tab</h3>
 				<ul>
-					<li>tabSongId(primary key)</li>
+					<li>tabId(primary key)</li>
 					<li>tabImage</li>
 					<li>tabKey</li>
 				</ul>
