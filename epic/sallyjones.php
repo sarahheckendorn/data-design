@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<header>
-			<h1>Sally Jones<h1/>
+			<h1>Sally Jones</h1>
 				<img src="sallyjones.jpg" alt="SallyJones.jpg">
 		</header>
 		<div>
