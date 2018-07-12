@@ -24,7 +24,7 @@
 			<h3>Tab</h3>
 				<ul>
 					<li>tabId(primary key)</li>
-					<li>tabImage</li>
+					<li>tabImageUrl</li>
 					<li>tabKey</li>
 				</ul>
 			<h2>Relationships</h2>
