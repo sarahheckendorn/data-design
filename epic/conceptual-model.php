@@ -11,10 +11,10 @@
 			<h3>Song</h3>
 				<ul>
 					<li>songId(primary key)</li>
-					<li>songTitle</li>
-					<li>songDifficulty</li>
-					<li>songTuning</li>
 					<li>songAuthor</li>
+					<li>songDifficulty</li>
+					<li>songTitle</li>
+					<li>songTuning</li>
 				</ul>
 			<h3>SongTab</h3>
 				<ul>
@@ -24,8 +24,8 @@
 			<h3>Tab</h3>
 				<ul>
 					<li>tabSongId(primary key)</li>
-					<li>tabKey</li>
 					<li>tabImage</li>
+					<li>tabKey</li>
 				</ul>
 			<h2>Relationships</h2>
 		<ul>
