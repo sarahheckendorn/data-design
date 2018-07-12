@@ -7,6 +7,12 @@
 	<body>
 		<div>
 			<h2>Use Case</h2>
+			<p>Sally has recently been working on expanding her repertoire. She has been frustrated with how difficult</br>
+				it is to find song lyrics that include tabs. She enjoys playing music after work to help the stress melt away</br>
+				so she'd rather not have to deal with annoying sites that won't give her what she needs.</p>
+		</div>
+		<div>
+			<h2>User Story</h2>
 			<p>Sally needs to get a song with tabs.</p>
 		</div>
 		<div>
