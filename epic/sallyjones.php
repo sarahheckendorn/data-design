@@ -20,11 +20,12 @@
 			</ul>
 		</div>
 		<div>
-		<p>Sally enjoys playing her guitar and singing at the top of her voice.<br>
+			<h3>Attitude</h3>
+				<p>Sally enjoys playing her guitar and singing at the top of her voice.<br>
 			She loves learning new songs and is constantly looking up sites that can offer chords, tabs,<br>
 			and lyrics to her favorite songs or new jams.</p>
 			<div>
-				<h2>Ideal Features</h2>
+				<h3>Ideal Features</h3>
 				<ul>
 					<li>Easily accessible sites</li>
 					<li>Easy navigation through site</li>
@@ -33,7 +34,7 @@
 				</ul>
 			</div>
 			<div>
-				<h2>Frustrations</h2>
+				<h3>Frustrations</h3>
 				<ul>
 					<li>Not available for mobile</li>
 					<li>Pop up advertisements</li>
