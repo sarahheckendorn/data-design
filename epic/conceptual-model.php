@@ -11,7 +11,6 @@
 			<h3>Song</h3>
 				<ul>
 					<li>songId(primary key)</li>
-					<li>songArtistId(foreign key)</li>
 					<li>songTitle</li>
 					<li>songDifficulty</li>
 					<li>songTuning</li>
@@ -19,14 +18,13 @@
 				</ul>
 			<h3>SongTab</h3>
 				<ul>
-					<li>songTabId(foreign key)</li>
-					<li>songTabOrder</li>
-					<li>songTabRating</li>
+					<li>songTabId(primary key)</li>
+					<li>songTabLocation(foreign key)</li>
 				</ul>
 			<h3>Tab</h3>
 				<ul>
 					<li>tabSongId(primary key)</li>
-					<li>tabKey(foreign key)</li>
+					<li>tabKey</li>
 					<li>tabImage</li>
 				</ul>
 			<h2>Relationships</h2>
