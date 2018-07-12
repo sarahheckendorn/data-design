@@ -21,6 +21,7 @@
 				<ul>
 					<li>songTabId(foreign key)</li>
 					<li>songTabOrder</li>
+					<li>songTabRating</li>
 				</ul>
 			<h3>Tab</h3>
 				<ul>
