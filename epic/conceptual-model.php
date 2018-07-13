@@ -33,6 +33,9 @@
 			<li>Multiple tabs can be in multiple songs (many to many)</li>
 		</ul>
 		</div>
+		<div>
+			<img src="image/erd.svg" alt="ERD.svg image">
+		</div>
 	</body>
 </html>
 
