@@ -29,7 +29,7 @@
 				</ul>
 			<h2>Relationships</h2>
 		<ul>
-			<li>A song can have multiple tabs (1 to many)</li>
+			<li>Multiple tabs can be in one song (many to 1)</li>
 			<li>Multiple tabs can be in multiple songs (many to many)</li>
 		</ul>
 		</div>
