@@ -13,6 +13,7 @@
 					<li>songId(primary key)</li>
 					<li>songAuthor</li>
 					<li>songDifficulty</li>
+					<li>songKey</li>
 					<li>songTitle</li>
 					<li>songTuning</li>
 				</ul>
@@ -25,7 +26,6 @@
 				<ul>
 					<li>tabId(primary key)</li>
 					<li>tabImageUrl</li>
-					<li>tabKey</li>
 				</ul>
 			<h2>Relationships</h2>
 		<ul>
@@ -34,7 +34,7 @@
 		</ul>
 		</div>
 		<div>
-			<img src="image/erd.svg" alt="ERD.svg image">
+			<img src="image/Erd.svg" alt="ERD.svg image">
 		</div>
 	</body>
 </html>
