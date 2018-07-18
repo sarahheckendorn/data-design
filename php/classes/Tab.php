@@ -65,6 +65,4 @@ class Tab {
 	}
 	$this->tabImageUrl = $newTabImageUrl;
 	}
-
-
 }
