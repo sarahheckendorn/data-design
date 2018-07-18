@@ -8,6 +8,7 @@ CREATE TABLE song (
 	songId BINARY(16) NOT NULL,
 	songAuthor VARCHAR(100) NOT NULL,
 	songDifficulty VARCHAR(13),
+	songKey VARCHAR(5),
 	songTitle VARCHAR(100) NOT NULL,
 	songTuning CHAR(12) NOT NULL,
 	PRIMARY KEY (songId)
