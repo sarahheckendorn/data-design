@@ -45,7 +45,7 @@ class Song {
 	 * mutator method for songId
 	 *
 	 * @param Uuid/string $newSongId new value of songId
-	 * @throws \RangeException if $newSongId is n
+	 * @throws \RangeException if $newSongId is not alphanumeric
 	 * @throws \TypeError if $newSongId is not a uuid
 	 */
 	public function setSongId($newSongId) : void {
@@ -70,7 +70,7 @@ class Song {
 	/**
 	 * mutator method for song author
 	 *
-	 * @param string $snewSongAuthor new value of song author
+	 * @param string $newSongAuthor new value of song author
 	 * @throws \InvalidArgumentException if $newSongAuthor is not a string or insecure
 	 * @throws \RangeException if $newSongAuthor is > 100 characters
 	 * @throws \TypeError if $newSongAuthor is not a string
@@ -89,8 +89,6 @@ class Song {
 	// stores song author content
 	$this->songAuthor = $newSongAuthor;
 }
-
-// CODE BREAK for song Difficulty
 
 /**
  * accessor method for songDifficulty
@@ -123,8 +121,6 @@ class Song {
 	$this->songDifficulty = $newSongDifficulty;
 }
 
-// CODE BREAK for SONG KEY
-
 /**
  * accessory method for songKey
  *
@@ -137,7 +133,7 @@ class Song {
 	 * mutator method for song key
 	 *
 	 * @param string $newSongKey new value of song Key
-	 * @throws \InvalidArgumentException is $newSongKey is not a string or insecure
+	 * @throws \InvalidArgumentException if $newSongKey is not a string or insecure
 	 * @throws \RangeException if $newSongKey is > 5
 	 */
 	public function setSongKey(string $newSongKey) : void {
@@ -154,8 +150,6 @@ class Song {
 	//stores song key content
 	$this->songKey = $newSongKey;
 }
-
-//CODE BREAK for SONG TITLE
 
 /**
  * accessory method for songTitle
@@ -182,8 +176,6 @@ class Song {
 		//stores song title content
 		$this->songTitle = $newSongTitle;
 	}
-
-//CODE BREAK for SONG TUNING
 
 /**
  * accesstory method for song Tuning
