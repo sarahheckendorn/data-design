@@ -39,6 +39,32 @@ class Tab {
 		$this->tabId = $uuid;
 	}
 
+/**
+ * accessor method for tabImageUrl
+ *
+ * @return string value of tab Image Url
+ */
+
+	public function getTabImageUrl() :string {
+		return($this->tabImageUrl);
+	}
+/**
+ * mutator method for tabImageUrl
+ *
+ * @param string $newTabImageUrl new value of tabImageUrl
+ * @throws \InvalidArgumentException if $newTabImageUrl is not a string or insecure
+ * @throws \RangeException if $newTabImageUrl is > 255 characters
+ * @throws \TypeError if $newTabImageUrl is not a string
+ */
+	public function setTabImageUrl(string $newTabImageUrl) : void {
+	//verify that tabImageUrl is secure
+	$newTabImageUrl = trim($newTabImageUrl);
+	$newTabImageUrl = filter_var($newTabImageUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	if(empty($newTabImageUrl) === true){
+		throw(new \RangeException("Tab Image URL cannot be empty"));
+	}
+	$this->tabImageUrl = $newTabImageUrl;
+	}
 
 
 }
