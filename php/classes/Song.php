@@ -65,8 +65,8 @@ class Song {
 	 * @return string value of song Author
 	 */
 	public function($getSongAuthor) :string {
-		return ($this->songAuthor);
-	}
+	return ($this->songAuthor);
+}
 	/**
 	 * mutator method for song author
 	 *
@@ -81,10 +81,80 @@ class Song {
 	$newSongAuthor = filter_var($newSongAuthor, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	if(empty($newSongAuthor) === true){
 		throw(new \InvalidArgumentException("song author is empty or insecure"));
-		}
+	}
 	//verify that song author will fit in the database
 	if(strlen($newSongAuthor) > 100) {
 		throw(new \RangeException("song author is too long"))
 		}
+	// stores song author content
+	$this->songAuthor = $newSongAuthor;
+}
+
+// CODE BREAK for song Difficulty
+
+/**
+ * accessor method for songDifficulty
+ *
+ * @return string value of song difficulty
+ */
+	public function($getSongDifficulty) :string {
+	return ($this->songDifficulty);
 	}
+	/**
+	 * mutator method for song difficulty
+	 *
+	 * @param string $newSongDifficulty new value of song Difficulty
+	 * @throws \InvalidArgumentException if $newSongDifficulty is not a string or insecure
+	 * @throws \RangeException if $newSongDifficulty is > 13 characters
+	 * @throws \TypeError if $newSongDifficulty is not a string
+	 **/
+	public function setSongDifficulty(string $newSongDifficulty) : void {
+	//verify that song difficulty is secure
+	$newSongDifficulty = trim($newSongDifficulty);
+	$newSongDifficulty = filter_var($newSongDifficulty, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	if(empty($newSongDifficulty) === true){
+		throw(new \InvalidArgumentException("song difficulty is empty or insecure"));
+	}
+	//verify that song difficulty will fit in the database
+	if(strlen($newSongDifficulty) > 13) {
+		throw(new \RangeException("song difficulty is too long"))
+		}
+	// stores song difficulty content
+	$this->songDifficulty = $newSongDifficulty;
+}
+
+// CODE BREAK for SONG KEY
+
+/**
+ * accessory method for songKey
+ *
+ * @return string value of song Key
+ */
+	public function($getSongKey) :string {
+	return ($this->songKey);
+	}
+	/**
+	 * mutator method for song key
+	 *
+	 * @param string $newSongKey new value of song Key
+	 * @throws \InvalidArgumentException is $newSongKey is not a string or insecure
+	 * @throws \RangeException if $newSongKey is > 5
+	 */
+	public function setSongKey(string $newSongKey) : void {
+	//verify that song difficulty is secure
+	$newSongKey = trim($newSongKey);
+	$newSongKey = filter_var($newSongKey, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	if(empty($newSongKey) === true){
+		throw(new \InvalidArgumentException("song key is empty or insecure"));
+	}
+	//verify that song key will fit in the database
+	if(strlen($newSongKey) > 5) {
+		throw(new \RangeException("song key is too long"))
+		}
+	//stores song difficulty content
+	$this->songKey = $newSongKey;
+}
+
+
+
 }
