@@ -32,6 +32,19 @@ class Song {
 	 */
 	private $songTuning;
 
+	public function __construct(int $newSongId, string $newSongAuthor, string $newSongDifficulty, string $newSongKey, string $newSongTitle, string $newSongTuning) {
+		try{
+			$this->setSongId($newSongId);
+			$this->setSongAuthor($newSongAuthor);
+			$this->setSongDifficulty($newSongDifficulty);
+			$this->setSongKey($newSongKey);
+			$this->setSongTitle($newSongTitle);
+			$this->setSongTuning($newSongTuning);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 	/**
 	 * accessor method for songId
 	 *
