@@ -32,6 +32,18 @@ class Song {
 	 */
 	private $songTuning;
 
+	/**
+	 * Song constructor.
+	 * @param int $newSongId
+	 * @param string $newSongAuthor
+	 * @param string $newSongDifficulty
+	 * @param string $newSongKey
+	 * @param string $newSongTitle
+	 * @param string $newSongTuning
+	 * @throws \InvalidArgumentException if data is not filled out
+	 * @throws \RangeException if data exceeds limit
+	 * @throws \Exception for any other exception
+	 */
 	public function __construct(int $newSongId, string $newSongAuthor, string $newSongDifficulty, string $newSongKey, string $newSongTitle, string $newSongTuning) {
 		try{
 			$this->setSongId($newSongId);

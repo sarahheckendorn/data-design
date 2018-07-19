@@ -12,6 +12,14 @@ class Tab {
 	 */
 	private $tabImageUrl;
 
+	/**
+	 * Tab constructor.
+	 * @param int $newTabId
+	 * @param int $newTabImageUrl
+	 * @throws \InvalidArgumentException if data is not filled out
+	 * @throws \RangeException if data exceeds limit
+	 * @throws \Exception for any other exception
+	 */
 	public function __construct(int $newTabId, int $newTabImageUrl) {
 		try{
 			$this->setTabId($newTabId);
