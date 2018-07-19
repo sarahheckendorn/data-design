@@ -52,6 +52,7 @@ class Song {
 			$this->setSongKey($newSongKey);
 			$this->setSongTitle($newSongTitle);
 			$this->setSongTuning($newSongTuning);
+			//determines what exception type is thrown
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
