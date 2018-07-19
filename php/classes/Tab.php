@@ -14,13 +14,13 @@ class Tab {
 
 	/**
 	 * Tab constructor.
-	 * @param int $newTabId
-	 * @param int $newTabImageUrl
+	 * @param string|UUID $newTabId gives ID of this TabID
+	 * @param string|UUID $newTabImageUrl gives ID of this Image Url
 	 * @throws \InvalidArgumentException if data is not filled out
 	 * @throws \RangeException if data exceeds limit
 	 * @throws \Exception for any other exception
 	 */
-	public function __construct(int $newTabId, int $newTabImageUrl) {
+	public function __construct($newTabId, string $newTabImageUrl) {
 		try{
 			$this->setTabId($newTabId);
 			$this->setTabImageUrl($newTabImageUrl);

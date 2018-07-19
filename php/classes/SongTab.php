@@ -14,13 +14,13 @@ class SongTab {
 
 	/**
 	 * SongTab constructor.
-	 * @param int $newSongTabSongId
-	 * @param int $newSongTabTabId
+	 * @param string|UUID $newSongTabSongId gives the id of SongTabSongID
+	 * @param string|UUID $newSongTabTabId gives the ID of SongTabTabId
 	 * @throws \InvalidArgumentException if data is not filled out
 	 * @throws \RangeException if data exceeds limit
 	 * @throws \Exception for any other exception
 	 */
-	public function __construct(int $newSongTabSongId, int $newSongTabTabId) {
+	public function __construct($newSongTabSongId, $newSongTabTabId) {
 		try{
 			$this->setSongTabSongId($newSongTabSongId);
 			$this->setSongTabTabId($newSongTabTabId);
