@@ -173,6 +173,10 @@ class Song {
 		if(empty($newSongTitle) === true) {
 			throw(new \InvalidArgumentException("Song title cannot be empty"));
 		}
+		//verify that song title will fit in the database
+		if(strlen($newSongTitle) > 100) {
+			throw(new \RangeException("song title characters exceed limit"));
+		}
 		//stores song title content
 		$this->songTitle = $newSongTitle;
 	}
@@ -198,6 +202,10 @@ class Song {
 		$newSongTuning = filter_var($newSongTuning, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newSongTuning) === true) {
 			throw(new \InvalidArgumentException("Song tuning cannot be empty"));
+		}
+		//verify that song tuning will fit in the database
+		if(strlen($newSongTuning) > 12) {
+			throw(new \RangeException("song tuning characters exceed limit"));
 		}
 		//stores song tuning content
 		$this->songTuning = $newSongTuning;
