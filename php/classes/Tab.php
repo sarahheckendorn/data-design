@@ -61,8 +61,12 @@ class Tab {
 	$newTabImageUrl = trim($newTabImageUrl);
 	$newTabImageUrl = filter_var($newTabImageUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	if(empty($newTabImageUrl) === true){
-		throw(new \RangeException("Tab Image URL cannot be empty"));
+		throw(new \InvalidArgumentException("Tab Image URL cannot be empty"));
 	}
+		//verify that tab Image Url will fit in the database
+		if(strlen($newTabImageUrl) > 255) {
+			throw(new \RangeException("Tab Image URL characters exceed limit"));
+		}
 	$this->tabImageUrl = $newTabImageUrl;
 	}
 }
