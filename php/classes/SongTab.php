@@ -12,6 +12,15 @@ class SongTab {
 	 */
 	private $songTabTabId;
 
+	public function __construct(int $newSongTabSongId, int $newSongTabTabId) {
+		try{
+			$this->setSongTabSongId($newSongTabSongId);
+			$this->setSongTabTabId($newSongTabTabId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 
 	/**
 	 * Accessor method for songTabSongId
