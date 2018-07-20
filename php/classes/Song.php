@@ -236,4 +236,84 @@ class Song {
 		//stores song tuning content
 		$this->songTuning = $newSongTuning;
 	}
+	/**
+	 * inserts this songId into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo): void {
+		// create query template
+		$query = "INSERT INTO song(songId, songAuthor, songDifficulty, songKey, songTitle, songTuning) VALUES (:songId, :songAuthor, :songDifficulty, :songKey, :songTitle, :songTuning)";
+		$statement = $pdo->prepare($query);
+		$parameters = ["songId" => $this->songId->getBytes(), "songAuthor" => $this->songAuthor, "songDifficulty" => $this->songDifficulty, "songKey" => $this->songKey, "songTitle" => $this->songTitle, "songTuning" => $this->songTuning];
+		$statement->execute($parameters);
+	}
+	/**
+	 * deletes this songId from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo): void {
+		// create query template
+		$query = "DELETE FROM song WHERE songId = :songId";
+		$statement = $pdo->prepare($query);
+		//bind the member variables to the place holders in the template
+		$parameters = ["songId" => $this->songId->getBytes()];
+		$statement->execute($parameters);
+	}
+	/**
+	 * updates this Song from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 **/
+	public function update(\PDO $pdo): void {
+		// create query template
+		$query = "UPDATE song SET songAuthor = :songAuthor, songDifficulty = :songDifficulty, songKey = :songKey, songTitle = :songTitle, songTuning = :songTuning WHERE songId = :songId";
+		$statement = $pdo->prepare($query);
+		// bind the member variables to the place holders in the template
+		$parameters = ["songId" => $this->songId->getBytes(), "songAuthor" => $this->songAuthor, "songDifficulty" => $this->songDifficulty, "songKey" => $this->songKey, "songTitle" => $this->songTitle, "songTuning" => $this->songTuning];
+		$statement->execute($parameters);
+	}
+	/**
+	 * gets the Song by song id
+	 *
+	 * @param \PDO $pdo $pdo PDO connection object
+	 * @param string $profileId profile Id to search for
+	 * @return Song|null Song or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getSongBySongId(\PDO $pdo, string $songId):?Song {
+		// sanitize the song id before searching
+		try {
+			$songId = self::validateUuid($songId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		// create query template
+		$query = "SELECT songId, songAuthor, songDifficulty, songKey, songTitle, songTuning FROM song WHERE songId = :songId";
+		$statement = $pdo->prepare($query);
+		// bind the song id to the place holder in the template
+		$parameters = ["songId" => $songId->getBytes()];
+		$statement->execute($parameters);
+		// grab the Song from mySQL
+		try {
+			$song = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$song = new Song($row["songId"], $row["songAuthor"], $row["songDifficulty"], $row["songKey"],$row["songTitle"], $row["songTuning"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($song);
+	}
+
 }
