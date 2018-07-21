@@ -283,7 +283,7 @@ class Song {
 	 * gets the Song by song id
 	 *
 	 * @param \PDO $pdo $pdo PDO connection object
-	 * @param string $profileId profile Id to search for
+	 * @param string $songId song Id to search for
 	 * @return Song|null Song or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
