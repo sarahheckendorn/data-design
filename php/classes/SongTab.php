@@ -82,4 +82,170 @@ class SongTab {
 		//convert and stores the songTab TabId
 		$this->songTabTabId = $uuid;
 	}
+	/**
+	 * inserts this SongTab into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) : void {
+		//create query template
+		$query = "INSERT INTO songTab(songTabSongId, songTabTabId) VALUES(:songTabSongId, :songTabTabId";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holders in the template
+		$parameters = ["songTabSongId" => $this->songTabSongId->getBytes(), "songTabTabId" => $this->songTabTabId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * deletes the SongTab from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+		// create query template
+		$query = "DELETE FROM songTab WHERE songTabSongId = :songTabSongId AND songTabTabId = :songTabTabId";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holder in the template
+		$parameters = ["songTabSongId" => $this->songTabSongId->getBytes(), "songTabTabId" => $this->songTabTabId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * updates this SongTab in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+		// create query template
+		$query = "UPDATE songTab SET songTabSongId = :songTabSongId, songTabTabId = :songTabTabId WHERE songTabSongId = :songTabSongId AND songTabTabId = :songTabTabId";
+		$statement = $pdo->prepare($query);
+
+		//binds variables to the place holders in the template
+		$parameters = ["songTabSongId" => $this->songTabSongId->getBytes(), "songTabTabId" => $this->songTabTabId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * gets the SongTab by songTabSongId and songTabTabId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $songTabSongId and $songTabTabId to search for
+	 * @return SongTab|null SongTab found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public static function getSongTabBySongTabSongIdAndSongTabTabId(\PDO $pdo, string $songTabSongId, string $songTabTabId) : ?SongTab {
+		//sanitize the string before searching
+		try {
+			$songTabSongId = self::validateUuid($songTabSongId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		try {
+			$songTabTabId\ = self::validateUuid($songTabTabId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+	}
+
+		//create query template
+		$query = "SELECT songTabSongId, songTabTabId FROM songTab WHERE songTabSongId = :songTabSongId AND songTabTabId = :songTabTabId;
+		$statement = $pdo->prepare($query);
+
+		//bind the songTabSong id and songTabTab id to the place holder in the template
+		$parameters = ["songTabSongId" => $songTabSongId->getBytes(), "songTabTabId" => $songTabTabId->getBytes()];
+		$statement->execute($parameters);
+
+		// grab the songTab from mySQL
+		try {
+			$songTab = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$songTab = new SongTab($row["songTabSongId"], $row["songTabTabId"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($songTab);
+	}
+	/**
+	 * gets the SongTab by songTab Song id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $songTabSongId Tab id to search for
+	 * @return \SplFixedArray SplFixedArray of SongTabs found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 **/
+	public static function getSongTabBySongTabSongId(\PDO $pdo, string $songTabSongId) : \SPLFixedArray {
+		try {
+			$songTabSongId = self::validateUuid($songTabSongId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		// create query template
+		$query = "SELECT songTabSongId, songTabTabId FROM songTab WHERE songTabSongId = :songTabSongId";
+		$statement = $pdo->prepare($query);
+		// bind the member variables to the place holders in the template
+		$parameters = ["songTabSongId" => $songTabSongId->getBytes()];
+		$statement->execute($parameters);
+		// build an array of songTabs
+		$songTabs = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$songTab = new SongTab($row["songTabSongId"], $row["songTabTabId"]);
+				$songTabs[$songTabs->key()] = $songTabs;
+				$songTab->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($likes);
+	}
+/**
+	 * gets the SongTab by songTab Tab id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $songTabTabId Tab id to search for
+	 * @return \SplFixedArray SplFixedArray of SongTabs found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 **/
+	public static function getSongTabBySongTabTabId(\PDO $pdo, string $songTabTabId) : \SPLFixedArray {
+		try {
+			$songTabTabId = self::validateUuid($songTabTabId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		// create query template
+		$query = "SELECT songTabSongId, songTabTabId FROM songTab WHERE songTabTabId = :songTabTabId";
+		$statement = $pdo->prepare($query);
+		// bind the member variables to the place holders in the template
+		$parameters = ["songTabTabId" => $songTabTabId->getBytes()];
+		$statement->execute($parameters);
+		// build an array of likes
+		$songTabs = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$songTabs = new Like($row["songTabSongId"], $row["songTabTabId"]);
+				$songTabs[$songTabs->key()] = $songTabs;
+				$songTabs->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($songTabs);
+	}
 }
