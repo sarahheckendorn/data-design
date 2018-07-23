@@ -99,7 +99,7 @@ class SongTab {
 	 **/
 	public function insert(\PDO $pdo) : void {
 		//create query template
-		$query = "INSERT INTO songTab(songTabSongId, songTabTabId) VALUES(:songTabSongId, :songTabTabId";
+		$query = "INSERT INTO songTab(songTabSongId, songTabTabId) VALUES(:songTabSongId, :songTabTabId)";
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holders in the template
@@ -158,14 +158,13 @@ class SongTab {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		try {
-			$songTabTabId\ = self::validateUuid($songTabTabId);
+			$songTabTabId = self::validateUuid($songTabTabId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-	}
 
 		//create query template
-		$query = "SELECT songTabSongId, songTabTabId FROM songTab WHERE songTabSongId = :songTabSongId AND songTabTabId = :songTabTabId;
+		$query = "SELECT songTabSongId, songTabTabId FROM songTab WHERE songTabSongId = :songTabSongId AND songTabTabId = :songTabTabId";
 		$statement = $pdo->prepare($query);
 
 		//bind the songTabSong id and songTabTab id to the place holder in the template
@@ -212,14 +211,14 @@ class SongTab {
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$songTab = new SongTab($row["songTabSongId"], $row["songTabTabId"]);
-				$songTabs[$songTabs->key()] = $songTabs;
-				$songTab->next();
+				$songTabs[$songTabs->key()] = $songTab;
+				$songTabs->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return ($songTab);
+		return ($songTabs);
 	}
 /**
 	 * gets the SongTab by songTab Tab id
@@ -246,8 +245,8 @@ class SongTab {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$songTabs = new SongTab($row["songTabSongId"], $row["songTabTabId"]);
-				$songTabs[$songTabs->key()] = $songTabs;
+				$songTab = new SongTab($row["songTabSongId"], $row["songTabTabId"]);
+				$songTabs[$songTabs->key()] = $songTab;
 				$songTabs->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
