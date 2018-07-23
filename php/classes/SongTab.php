@@ -182,7 +182,7 @@ class SongTab {
 	 * gets the SongTab by songTab Song id
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param string $songTabSongId Tab id to search for
+	 * @param string $songTabSongId Song id to search for
 	 * @return \SplFixedArray SplFixedArray of SongTabs found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 **/
@@ -211,7 +211,7 @@ class SongTab {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return ($likes);
+		return ($songTab);
 	}
 /**
 	 * gets the SongTab by songTab Tab id
@@ -233,12 +233,12 @@ class SongTab {
 		// bind the member variables to the place holders in the template
 		$parameters = ["songTabTabId" => $songTabTabId->getBytes()];
 		$statement->execute($parameters);
-		// build an array of likes
+		// build an array of songTabs
 		$songTabs = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$songTabs = new Like($row["songTabSongId"], $row["songTabTabId"]);
+				$songTabs = new SongTab($row["songTabSongId"], $row["songTabTabId"]);
 				$songTabs[$songTabs->key()] = $songTabs;
 				$songTabs->next();
 			} catch(\Exception $exception) {
